@@ -20,7 +20,7 @@ const generateToken = (userId: string) => {
 
 // POST /api/auth/register
 export const registerUser = asyncHandler(async (req: Request, res: Response) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, role } = req.body;
 
   if (!name || !email || !password) {
     throw new ApiError(400, "All fields are required");
@@ -29,7 +29,12 @@ export const registerUser = asyncHandler(async (req: Request, res: Response) => 
   const existingUser = await User.findOne({ email });
   if (existingUser) throw new ApiError(400, "Email already registered");
 
-  const user = await User.create({ name, email, password });
+  const user = await User.create({
+    name, 
+    email, 
+    password,
+    role : role || "user"
+  });
   const token = generateToken(user._id.toString());
 
   res
