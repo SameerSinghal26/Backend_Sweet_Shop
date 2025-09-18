@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import authRouter from "./routes/auth.routes";
+import sweetRouter from "./routes/sweet.routes";
 
 const app = express();
 
@@ -19,5 +20,6 @@ app.use(express.static("public"));
 
 // Routes
 app.use("/api/auth", authRouter);
+app.use("/api/sweets", sweetRouter);
 
 export { app };

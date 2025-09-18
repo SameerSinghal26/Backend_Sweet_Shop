@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-dotenv.config({ path: ".env.test" });
+dotenv.config({ path: ".env" });
 import request from "supertest";
 import mongoose from "mongoose";
 import { app } from "../app";
