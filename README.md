@@ -1,5 +1,7 @@
 # Sweet Shop Management
 
+**Frontend GitHub Repository:** [Frontend_Sweet_Shop](https://github.com/SameerSinghal26/Frontend_Sweet_Shop)
+
 ## Project Explanation
 This project is a full-stack Sweet Shop Management system. The backend is built with Node.js, Express, TypeScript, and MongoDB, providing RESTful APIs for user authentication, sweet management, and admin features. The frontend is built with React and TypeScript for a modern, responsive user experience.
 
