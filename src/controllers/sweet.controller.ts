@@ -38,11 +38,10 @@ export const addSweet = asyncHandler(async (req: Request, res: Response) => {
 });
 
 // GET /api/sweets
-export const listSweets = asyncHandler(async (req, res) => {
+export const listSweets = asyncHandler(async (_req: Request, res: Response) => {
   const sweets = await Sweet.find().populate("admins", "name");
   res.json({ success: true, data: sweets });
 });
-
 
 // GET /api/sweets/search
 export const searchSweets = asyncHandler(async (req: Request, res: Response) => {
@@ -73,14 +72,12 @@ export const updateSweet = asyncHandler(async (req: Request, res: Response) => {
   const { id } = req.params;
   const update: any = { ...req.body };
 
-  // If image is uploaded, replace with Cloudinary URL
   if (req.file?.path) {
     const cloudinaryRes = await uploadOnCloudinary(req.file.path);
     if (!cloudinaryRes) throw new ApiError(500, "Failed to upload image");
     update.image = cloudinaryRes.secure_url;
   }
 
-  // Ensure admins is always an array if present
   if (update.admins) {
     update.admins = Array.isArray(update.admins) ? update.admins : [update.admins];
   }
@@ -90,7 +87,6 @@ export const updateSweet = asyncHandler(async (req: Request, res: Response) => {
 
   res.status(200).json(sweet);
 });
-
 
 // DELETE /api/sweets/:id
 export const deleteSweet = asyncHandler(async (req: Request, res: Response) => {
