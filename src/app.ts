@@ -5,10 +5,10 @@ import authRouter from "./routes/auth.routes";
 import sweetRouter from "./routes/sweet.routes";
 
 const app = express();
-
+const allowedOrigins = ["http://localhost:5173", `${process.env.FRONTEND_URL}`];
 app.use(
   cors({
-    origin: "http://localhost:5173", // frontend URL
+    origin: allowedOrigins,
     credentials: true,
   })
 );
