@@ -73,6 +73,3 @@ The sweet controller manages all sweet-related operations:
 - `npm start`: Start the production server
 - `npm run dev`: Start the server in development mode (with nodemon)
 - `npm test`: Run backend tests
-
-## License
-MIT
