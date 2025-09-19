@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 app.use(express.static("public"));
 
 // Routes
-app.use("/api/auth", authRouter);
 app.use("/api/sweets", sweetRouter);
+app.use("/api/auth", authRouter);
 
 export { app };

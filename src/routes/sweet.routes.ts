@@ -9,15 +9,16 @@ import {
   restockSweet,
 } from "../controllers/sweet.controller";
 import { verifyJWT } from "../middlewares/auth.middleware";
-import { adminOnly } from "../middlewares/admin.middleware";
+import { adminOnly } from "../middlewares/admin.middleware";  
+import { upload } from "../middlewares/multer.middleware";
 
 const router = Router();
 
 router.get("/", listSweets);
 router.get("/search", searchSweets);
 
-router.post("/", verifyJWT, adminOnly, addSweet);
-router.put("/:id", verifyJWT, adminOnly, updateSweet);
+router.post("/", verifyJWT, adminOnly, upload.single("image"), addSweet);
+router.put("/:id", verifyJWT, adminOnly, upload.single("image"), updateSweet);
 router.delete("/:id", verifyJWT, adminOnly, deleteSweet);
 
 router.post("/:id/purchase", verifyJWT, purchaseSweet);

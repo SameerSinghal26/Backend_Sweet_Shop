@@ -6,6 +6,7 @@ export interface ISweet extends Document {
   price: number;
   quantity: number;
   image?: string;
+  admins: mongoose.Types.ObjectId[]; // Array of user/admin references
 }
 
 const SweetSchema = new Schema<ISweet>({
@@ -14,6 +15,7 @@ const SweetSchema = new Schema<ISweet>({
   price: { type: Number, required: true, min: 0 },
   quantity: { type: Number, required: true, min: 0, default: 0 },
   image: { type: String },
+  admins: [{ type: Schema.Types.ObjectId, ref: "User", required: true }],
 }, { timestamps: true });
 
 export const Sweet = mongoose.model<ISweet>("Sweet", SweetSchema);
